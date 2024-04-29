@@ -39,22 +39,22 @@ class ShareController extends Controller
      */
     public function store(Request $request)
     {
-        $startDate = Carbon::create(
-            substr($request->startDiscount, 0, 4),
-            substr($request->startDiscount, 5, 2),
-            substr($request->startDiscount, 8, 2)
-        )->setHour(0)->setMinute(0)->setSecond(1);
+//        $startDate = Carbon::create(
+//            substr($request->startDiscount, 0, 4),
+//            substr($request->startDiscount, 5, 2),
+//            substr($request->startDiscount, 8, 2)
+//        )->setHour(0)->setMinute(0)->setSecond(1);
+//
+//        $endDate = Carbon::create(
+//            substr($request->endDiscount, 0, 4),
+//            substr($request->endDiscount, 5, 2),
+//            substr($request->endDiscount, 8, 2)
+//        )->setHour(23)->setMinute(59)->setSecond(59);
+//
+//        $date = Carbon::create($request->endDiscount)->setHour(23)->setMinute(59)->setSecond(59);
 
-        $endDate = Carbon::create(
-            substr($request->endDiscount, 0, 4),
-            substr($request->endDiscount, 5, 2),
-            substr($request->endDiscount, 8, 2)
-        )->setHour(23)->setMinute(59)->setSecond(59);
-
-        $date = Carbon::create($request->endDiscount)->setHour(23)->setMinute(59)->setSecond(59);
-
+        $date = $this->shareService->getDate($request);
         if (!$date->gt(Carbon::now())) {
-            // return redirect()->back()->with(['message' => $share->name . ' tin` akciya mu`ddeti o`tip ketken. Sms jibere almaysiz!!!']);
             return redirect()->back()->with(['message' => ' Akciya mu`ddetin Duris kiritin` o`tip ketken sa`neni kirittin`iz!!! ']);
         }
 

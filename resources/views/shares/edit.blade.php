@@ -13,6 +13,14 @@
                 <h6 class="m-0 font-weight-bold text-primary">Share edit</h6>
             </div>
             <div class="card-body">
+                @if(session()->has('message'))
+                    <div class='alert alert-success'>
+                        {{ session('message') }}
+                        <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span
+                                aria-hidden="true">&times;</span></button>
+                    </div>
+                @endif
+
                 <form action="{{ route('shares.update', $share->id) }}" method="post">
                     @method('PUT')
                     @csrf

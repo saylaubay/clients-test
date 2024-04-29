@@ -30,8 +30,6 @@ class SmsSend implements ShouldQueue
      */
     public function handle(): void
     {
-        Log::alert("KELDI");
-
         $list = Client::all();
         foreach ($list as $client){
             $date = Carbon::create($client->birthDate);

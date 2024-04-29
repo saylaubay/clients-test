@@ -42,7 +42,10 @@ class ClientController extends Controller
         if ($test != null){
             return redirect()->back()->with(['message'=>'Bunday telefon nomerli klient bazada bar!!!']);
         }
-        $this->clientService->store($request);
+        $bool = $this->clientService->store($request);
+        if($bool){
+            return redirect()->route('clients.index',['message'=>'Client saqlandi!!!']);
+        }
         return redirect()->route('clients.create',['message'=>'qate']);
     }
 

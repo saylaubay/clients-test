@@ -17,7 +17,7 @@ return new class extends Migration
             $table->string('lastName');
             $table->string('phone')->unique();
             $table->date('birthDate');
-            $table->integer('points')->default(0);
+            $table->integer('points')->nullable()->default(0);
             $table->timestamps();
         });
     }

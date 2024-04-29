@@ -39,7 +39,7 @@
                     <input required type="date" id="birthDate" name="birthDate" class="form-control">
 
                     <label class="mt-2" for="phone">Points</label>
-                    <input type="text" class="form-control" id="points" name="points" aria-describedby="emailHelp"
+                    <input required type="text" class="form-control" id="points" name="points" aria-describedby="emailHelp"
                            placeholder="Points">
 
                     <button type="submit" class="btn btn-primary mt-4">Save</button>

@@ -33,7 +33,7 @@
                                 <th>Percent</th>
                                 <th>reqPoint</th>
                                 <th>Send</th>
-                                <th></th>
+                                    <th></th>
                                 <th></th>
                             </tr>
                             </thead>
@@ -55,15 +55,22 @@
                                             </a>
 
                                         @else
-                                            <i >Sended</i>
+                                            <i>Sended2</i>
                                         @endif
                                     </td>
-                                    <td>
-                                        <a href="{{ route('shares.edit', $share->id) }}"
-                                           class="btn btn-warning btn-circle">
-                                            <i class="bi bi-pencil"></i>
-                                        </a>
-                                    </td>
+                                    @if($share->sended == 'YES')
+                                        <td>
+                                            <i>cannot be edited
+                                            </i>
+                                        </td>
+                                    @else
+                                        <td>
+                                            <a href="{{ route('shares.edit', $share->id) }}"
+                                               class="btn btn-warning btn-circle">
+                                                <i class="bi bi-pencil"></i>
+                                            </a>
+                                        </td>
+                                    @endif
                                     <td>
                                         <form class="btn btn-danger btn-circle"
                                               action="{{ route('shares.destroy', $share->id) }}" method="post">
@@ -83,13 +90,13 @@
                     </div>
                 </div>
 
-{{--                <div class="row">--}}
-{{--                    <div class="col-sm-12">--}}
-{{--                        <div class="float-right p-4">--}}
-{{--                            --}}{{--                        {{$users->links()}}--}}
-{{--                        </div>--}}
-{{--                    </div>--}}
-{{--                </div>--}}
+                {{--                <div class="row">--}}
+                {{--                    <div class="col-sm-12">--}}
+                {{--                        <div class="float-right p-4">--}}
+                {{--                            --}}{{--                        {{$users->links()}}--}}
+                {{--                        </div>--}}
+                {{--                    </div>--}}
+                {{--                </div>--}}
 
             </div>
         @endif

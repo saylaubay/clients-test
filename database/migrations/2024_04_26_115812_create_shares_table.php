@@ -17,7 +17,7 @@ return new class extends Migration
             $table->date('startDiscount');
             $table->date('endDiscount');
             $table->integer('percent');
-            $table->integer('reqPoint')->default(0);
+            $table->integer('reqPoint')->nullable()->default(0);
             $table->enum('sended', ['YES','NO'])->default('NO');
             $table->timestamps();
         });

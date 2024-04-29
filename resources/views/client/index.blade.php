@@ -5,6 +5,8 @@
     <!-- Begin Page Content -->
     <div class="container-fluid">
 
+
+
         @if($clients->count() == 0)
             Client list empty
         @else
@@ -15,6 +17,14 @@
                     <h6 class="m-0 font-weight-bold text-primary">Clients</h6>
                 </div>
                 <div class="card-body">
+                    @if(session()->has('message'))
+                        <div class="alert alert-danger">
+                            {{ session('message') }}
+                            <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span
+                                    aria-hidden="true">&times;</span></button>
+                        </div>
+                    @endif
+
                     <div class="table-responsive">
                         <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                             <thead>

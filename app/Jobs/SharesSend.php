@@ -31,8 +31,6 @@ class SharesSend implements ShouldQueue
      */
     public function handle(): void
     {
-        Log::alert("SHares arqali smsm jiberildi keldi");
-
         $clients = Client::where('points','>=', $this->point)->get();
 
         if ($clients->count() > 0) {

@@ -93,13 +93,6 @@ class ShareService
     public function send($id)
     {
         $share = Share::find($id);
-
-        $date = Carbon::create($share->endDiscount);
-
-        if (!$date->gt(Carbon::now())) {
-            return redirect()->back()->with(['message' => $share->name . ' tin` akciya mu`ddeti o`tip ketken. Sms jibere almaysiz!!!']);
-        }
-
         dispatch(new SharesSend($share->reqPoint));
         $share->sended = 'YES';
         $share->save();

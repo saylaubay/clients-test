@@ -5,7 +5,6 @@ namespace App\Http\Controllers;
 use App\Models\Client;
 use App\services\ClientService;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Log;
 
 class ClientController extends Controller
 {

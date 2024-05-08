@@ -23,6 +23,7 @@ class ShareController extends Controller
     public function index()
     {
         $shares = $this->shareService->index();
+        // return view('shares.index', ['shares' => $shares]);
         return view('shares.index', ['shares' => $shares]);
     }
 
@@ -39,13 +40,27 @@ class ShareController extends Controller
      */
     public function store(Request $request)
     {
-        $date = $this->shareService->getDate($request);
+        $startDate = Carbon::create(
+            substr($request->startDiscount, 0, 4),
+            substr($request->startDiscount, 5, 2),
+            substr($request->startDiscount, 8, 2)
+        )->setHour(0)->setMinute(0)->setSecond(1);
+
+        $endDate = Carbon::create(
+            substr($request->endDiscount, 0, 4),
+            substr($request->endDiscount, 5, 2),
+            substr($request->endDiscount, 8, 2)
+        )->setHour(23)->setMinute(59)->setSecond(59);
+
+
+        $date = Carbon::create($request->endDiscount)->setHour(23)->setMinute(59)->setSecond(59);
+
         if (!$date->gt(Carbon::now())) {
             return redirect()->back()->with(['message' => ' Akciya mu`ddetin Duris kiritin` o`tip ketken sa`neni kirittin`iz!!! ']);
         }
 
         $clientCount = Client::where('points','>=', $request->reqPoint)->count();
-        if($clientCount == 0){
+        if($request->has('send') && $clientCount == 0){
             return redirect()->back()->with(['message' => 'SMS jiberilmedi!!! klientlerdin` bali jetkilikli emes! ']);
         }
 
@@ -98,9 +113,11 @@ class ShareController extends Controller
         if($clientCount == 0){
             return redirect()->back()->with(['message' => 'SMS jiberilmedi!!! klientlerdin` bali jetkilikli emes! ']);
         }
+
         $share = $this->shareService->send($id);
 
         return redirect()->route('shares.index')->with(['message' => $share->name . ' shares ta belgilengen '. $share->reqPoint.' - bali bar bolg`an '.$clientCount.' klientke SMS jiberildi!!!']);
     }
+
 
 }

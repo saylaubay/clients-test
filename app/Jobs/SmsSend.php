@@ -11,7 +11,6 @@ use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Queue\SerializesModels;
 use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\Http;
-use Illuminate\Support\Facades\Log;
 
 class SmsSend implements ShouldQueue
 {
@@ -50,8 +49,8 @@ class SmsSend implements ShouldQueue
         $token = Cache::get('sms_token');
         if (!$token){
             $res = Http::post('notify.eskiz.uz/api/auth/login',[
-                'email'=>'saylaww@gmail.com',
-                'password'=>'lBAZRqNfFacr68GDFrxFcWps3wqQfDnuoNlL2Zff',
+                'email'=>'saylaubaybekmurzaev@gmail.com',
+                'password'=>'bWsUAEfPQImEu4IqPHmTudhWH7N8FvA2CZLEpSVF',
             ]);
             $token = $res['data']['token'];
             Cache::put('sms_token', $token, now()->addDays(30));
